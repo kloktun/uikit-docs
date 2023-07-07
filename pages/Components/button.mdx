@@ -1,0 +1,44 @@
+# Button
+
+The Button component is used to render a button element with different styles and options.
+
+## Props
+
+| Name         | Type                                                                                                 | Default        | Description                                                                           |
+|--------------|------------------------------------------------------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
+| type         | `"default"` \| `"primary"` \| `"plain"` \| `"borderless"` \| `"text"`                                 | `"default"`    | The type of button to render.                                                         |
+| size         | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"`                                       | `"default"`    | The size of the button.                                                               |
+| loading      | `boolean`                                                                                            | `false`        | Determines whether the button is in a loading state.                                  |
+| disabled     | `boolean`                                                                                            | `false`        | Determines whether the button is disabled.                                            |
+| success      | `boolean`                                                                                            | `false`        | Determines whether the button has a success status.                                   |
+| error        | `boolean`                                                                                            | `false`        | Determines whether the button has an error status.                                    |
+| warning      | `boolean`                                                                                            | `false`        | Determines whether the button has a warning status.                                   |
+| children     | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`                             |                | The content of the button.                                                            |
+| icon         | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`                             |                | The icon to display before the button content.                                        |
+| suffixIcon   | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`                             |                | The icon to display after the button content.                                         |
+
+## Usage
+
+```tsx
+import React from 'react';
+import { Button } from '@kloktun/uikit';
+import SvgIcon from 'path/to/icon';
+
+const Example = () => {
+  return (
+    <div>
+      <Button type="primary" size="large" loading>
+        Large Loading Button
+      </Button>
+      <Button type="plain" icon={<SvgIcon />}>
+        Icon Button
+      </Button>
+      <Button type="borderless" success>
+        Success Button
+      </Button>
+    </div>
+  );
+};
+
+export default Example;
+```

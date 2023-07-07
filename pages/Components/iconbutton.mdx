@@ -1,0 +1,38 @@
+# IconButton
+
+The IconButton component is used to render a button element with an icon. It provides various styling options and supports different types.
+
+## Props
+
+| Name         | Type                                                                      | Default        | Description                                                                           |
+|--------------|---------------------------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
+| type         | `"default"` \| `"primary"` \| `"plain"` \| `"borderless"` \| `"text"` \| `"primary-borderless"` \| `"primary-text"` \| `"primary-light-borderless"` \| `"primary-light-text"` \| `"light-borderless"` \| `"light-text"` | `"default"`    | The type of button to render.                                                         |
+| size         | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"`            | `"default"`    | The size of the button.                                                               |
+| loading      | `boolean`                                                                 | `false`        | Determines whether the button is in a loading state.                                  |
+| disabled     | `boolean`                                                                 | `false`        | Determines whether the button is disabled.                                            |
+| error        | `boolean`                                                                 |                | Determines whether the button has an error status.                                    |
+| success      | `boolean`                                                                 |                | Determines whether the button has a success status.                                   |
+| warning      | `boolean`                                                                 |                | Determines whether the button has a warning status.                                   |
+| icon         | `string` \| `React.ReactElement`                                          |                | The icon element to display on the button.                                            |
+| children     | `string` \| `React.ReactElement`                                          |                | An alternate icon element to display on the button.                                   |
+| ...restProps | `React.HTMLProps<HTMLButtonElement>`                                      |                | Additional HTML attributes and event handlers for the button element.                 |
+
+## Usage
+
+```tsx
+import React from 'react';
+import { IconButton } from '@kloktun/uikit';
+import AddIcon from 'path/to/add-icon';
+
+const Example = () => {
+  return (
+    <div>
+      <IconButton type="primary" size="large" icon={<AddIcon />} />
+      <IconButton type="plain" icon={<AddIcon />} />
+      <IconButton type="borderless" success icon={<AddIcon />} />
+    </div>
+  );
+};
+
+export default Example;
+```

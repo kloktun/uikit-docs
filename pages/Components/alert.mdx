@@ -1,0 +1,74 @@
+import '@kloktun/uikit/lib/index.css';
+import { Alert, Button } from '@kloktun/uikit';
+import KloktunLogo from '@/components/icons/kloktun-logo';
+
+# Alert
+
+The Alert component is used to display alert messages with different styles and statuses.
+
+## Props
+
+| Name         | Type                                                  | Default        | Description                                                                           |
+|--------------|-------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
+| title        | `string` \| `React.ReactNode` \| `React.ReactElement` |                | The title of the alert.                                                               |
+| children     | `string` \| `React.ReactNode` \| `React.ReactElement` |                | The content of the alert.                                                             |
+| icon         | `string` \| `React.ReactElement`                       |                | The icon to display in the alert.                                                     |
+| suffix       | `string` \| `JSX.Element` \| `React.ReactNode`         |                | The suffix element to display in the alert.                                            |
+| success      | `boolean`                                             | `false`        | Determines whether the alert has a success status.                                    |
+| warning      | `boolean`                                             | `false`        | Determines whether the alert has a warning status.                                    |
+| error        | `boolean`                                             | `false`        | Determines whether the alert has an error status.                                     |
+
+## Usage
+
+```tsx
+import React from 'react';
+import { Alert } from '@kloktun/uikit';
+import SuccessIcon from 'path/to/success-icon';
+
+const Example = () => {
+  return (
+    <div>
+      <Alert title="Default">
+        This is a default message.
+      </Alert>
+      <Alert title="Success" success icon={<SuccessIcon />}>
+        This is a success message.
+      </Alert>
+      <Alert title="Warning" warning>
+        This is a warning message.
+      </Alert>
+      <Alert error>
+        This is an error message.
+      </Alert>
+    </div>
+  );
+};
+
+export default Example;
+```
+
+## Try It
+<br />
+<Alert>
+  This is a default message.
+</Alert>
+<br />
+<Alert title="Default">
+  This is a default message with title.
+</Alert>
+<br />
+<Alert title="Default" suffix={<Button>Just do it</Button>}>
+  This is a default message with title and suffix
+</Alert>
+<br />
+<Alert title="Success" success icon={<KloktunLogo />}>
+  This is a success message.
+</Alert>
+<br />
+<Alert title="Warning" warning>
+  This is a warning message.
+</Alert>
+<br />
+<Alert error>
+  This is an error message.
+</Alert>

@@ -1,0 +1,35 @@
+# Label
+
+The Label component is used to associate a label with a form input or element.
+
+## Props
+
+| Name         | Type                                                  | Default        | Description                                                                           |
+|--------------|-------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
+| label        | `string` \| `React.ReactElement`                       |                | The text or element to display as the label.                                          |
+| children     | `React.ReactElement`                                  |                | The content to be associated with the label.                                          |
+
+## Usage
+
+```tsx
+import React from 'react';
+import { Label } from '@kloktun/uikit';
+
+const Example = () => {
+
+  const [value, setValue] = useState("");
+  
+  return (
+    <div>
+      <Label label="Username">
+        <Input value={value} onChange={setValue} />
+      </Label>
+      <Label label={<i>Age</i>}>
+        <Input value={value} onChange={setValue} />
+      </Label>
+    </div>
+  );
+};
+
+export default Example;
+```

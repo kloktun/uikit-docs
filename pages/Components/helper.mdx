@@ -1,0 +1,40 @@
+# Helper
+
+The Helper component is used in forms to provide additional information or error messages.
+
+## Props
+
+| Name         | Type                                                  | Default        | Description                                                                           |
+|--------------|-------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
+| children     | `React.ReactElement`                                  |                | The content to be wrapped by the Helper component.                                    |
+| text         | `string` \| `React.ReactElement`                       |                | The text or element to display as helper information.                                 |
+| error        | `string` \| `React.ReactElement`                       |                | The text or element to display as an error message.                                   |
+| suffix       | `string` \| `React.ReactElement`                       |                | The suffix element to display alongside the helper information or error message.      |
+
+## Usage
+
+```tsx
+import React from 'react';
+import { Helper, Input } from '@kloktun/uikit';
+
+const Example = () => {
+
+  const [value, setValue] = useState("");
+  
+  return (
+    <div>
+      <Helper text="Helper text">
+        <Input value={value} onChange={setValue} />
+      </Helper>
+      <Helper text="Helper text" error="Error message">
+        <Input value={value} onChange={setValue} />
+      </Helper>
+      <Helper text="Helper text" suffix="Suffix text">
+        <Input value={value} onChange={setValue} />
+      </Helper>
+    </div>
+  );
+};
+
+export default Example;
+```

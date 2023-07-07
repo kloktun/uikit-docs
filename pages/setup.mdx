@@ -1,0 +1,174 @@
+import { Tab, Tabs, Steps } from 'nextra-theme-docs'
+
+# Setup
+
+<Steps>
+ 
+### Install package
+
+To install KLOKTUN UI Kit, you can use npm or yarn. Open your terminal and navigate to your project directory, then run one of the following commands:
+
+<Tabs items={['npm', 'yarn']}>
+    <Tab>
+        ```bash copy
+        npm install @kloktun/uikit
+        ```
+    </Tab>
+    <Tab>
+        ```bash copy
+        yarn add @kloktun/uikit
+        ```
+    </Tab>
+</Tabs>
+
+### Wrap root component
+ 
+Wrap root component to `<KloktunUI>` and import styles
+
+<Tabs items={['React.js', 'Next.js']}>
+    <Tab>
+        ```tsx {3,4,8-10} copy
+        import React from 'react'
+
+        import '@kloktun/uikit/lib/index.css'; // import styles
+        import { KloktunUI } from '@kloktun/uikit';
+
+        const App = () => {
+            return (
+                <KloktunUI>
+                    <main>Application</main>
+                </KloktunUI>
+            );
+        }
+
+        export default App
+        ``` 
+    </Tab>
+    <Tab>
+        ```tsx {4,5,12-14} copy
+        "use client";
+
+        import './globals.css'
+        import '@kloktun/uikit/lib/index.css';
+        import { KloktunUI } from '@kloktun/uikit';
+
+        export default function RootLayout({ children }: { children: React.ReactElement }) {
+
+            return (
+                <html lang="en">
+                    <body>
+                        <KloktunUI>
+                            {children}
+                        </KloktunUI> 
+                    </body>
+                </html>
+            );
+
+        }
+        ``` 
+    </Tab>
+
+</Tabs>
+
+
+### Setup tailwind.config.js
+
+```js {3-8,20,24,28,32} copy
+/** @type {import('tailwindcss').Config} */
+
+const {
+  KloktunTailwindColors,
+  KloktunTailwindScreens,
+  KloktunTailwindBoxShadows,
+  KloktunTailwindBorderRadius 
+} = require('@kloktun/uikit');
+
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+
+      screens: {
+        ...KloktunTailwindScreens
+      },
+ 
+      boxShadow: {
+        ...KloktunTailwindBoxShadows
+      },
+ 
+      borderRadius: {
+        ...KloktunTailwindBorderRadius
+      },
+ 
+      colors: {
+        ...KloktunTailwindColors
+      },
+      
+    },
+  },
+  plugins: [],
+}
+```
+
+### Create custom theme (optional)
+
+You can create custom theme with additional settings
+
+<Tabs items={['React.js', 'Next.js']}>
+    <Tab>
+        ```tsx {6-8,12} copy
+        import React from 'react'
+
+        import '@kloktun/uikit/lib/index.css'; // import styles
+        import { KloktunUI } from '@kloktun/uikit';
+
+        const customTheme = new Theme({
+            primary: "#9160f8"
+        });
+
+        const App = () => {
+            return (
+                <KloktunUI theme={customTheme}>
+                    <main>Application</main>
+                </KloktunUI>
+            );
+        }
+
+        export default App
+        ``` 
+    </Tab>
+    <Tab>
+        ```tsx {7-9,16} copy
+        "use client";
+
+        import './globals.css'
+        import '@kloktun/uikit/lib/index.css';
+        import { KloktunUI } from '@kloktun/uikit';
+
+        const customTheme = new Theme({
+            primary: "#9160f8"
+        });
+
+        export default function RootLayout({ children }: { children: React.ReactElement }) {
+
+            return (
+                <html lang="en">
+                    <body>
+                        <KloktunUI theme={customTheme}>
+                            {children}
+                        </KloktunUI> 
+                    </body>
+                </html>
+            );
+
+        }
+        ``` 
+    </Tab>
+
+</Tabs>
+
+</Steps>
