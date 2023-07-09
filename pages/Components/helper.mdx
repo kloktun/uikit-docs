@@ -20,17 +20,18 @@ import { Helper, Input } from '@kloktun/uikit';
 const Example = () => {
 
   const [value, setValue] = useState("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
   
   return (
     <div>
       <Helper text="Helper text">
-        <Input value={value} onChange={setValue} />
+        <Input value={value} onChange={handleChange} />
       </Helper>
       <Helper text="Helper text" error="Error message">
-        <Input value={value} onChange={setValue} />
+        <Input value={value} onChange={handleChange} />
       </Helper>
       <Helper text="Helper text" suffix="Suffix text">
-        <Input value={value} onChange={setValue} />
+        <Input value={value} onChange={handleChange} />
       </Helper>
     </div>
   );

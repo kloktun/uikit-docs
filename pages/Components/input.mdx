@@ -40,12 +40,13 @@ import UserIcon from 'path/to/user-icon';
 const Example = () => {
 
   const [value, setValue] = useState("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
   return (
     <div>
       <Input
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         size="large"
         placeholder="Enter your name"
         prefix={<UserIcon />}
@@ -54,7 +55,7 @@ const Example = () => {
       />
       <Input
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         placeholder="Enter your password"
         prefixIcon="lock"
         suffix={<Button>Forgot Password</Button>}
@@ -63,7 +64,7 @@ const Example = () => {
       />
       <Input
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         size="small"
         placeholder="Search"
         prefixText="Search"
