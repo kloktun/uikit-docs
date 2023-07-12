@@ -77,40 +77,21 @@ Wrap root component to `<KloktunUI>` and import styles
 /** @type {import('tailwindcss').Config} */
 
 const {
-  KloktunTailwindColors,
-  KloktunTailwindScreens,
-  KloktunTailwindBoxShadows,
-  KloktunTailwindBorderRadius 
+  TailwindPreset
 } = require('@kloktun/uikit');
-
+ 
 module.exports = {
+
+  presets: [
+    TailwindPreset
+  ],
+
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-
-      screens: {
-        ...KloktunTailwindScreens
-      },
- 
-      boxShadow: {
-        ...KloktunTailwindBoxShadows
-      },
- 
-      borderRadius: {
-        ...KloktunTailwindBorderRadius
-      },
- 
-      colors: {
-        ...KloktunTailwindColors
-      },
-      
-    },
-  },
-  plugins: [],
+  ]
+  
 }
 ```
 
