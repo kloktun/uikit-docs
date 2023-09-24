@@ -1,0 +1,83 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# ActionDropdown
+
+The `ActionDropdown` component provides a dropdown menu that appears when a button is clicked. It is often used to group related actions or options together in a dropdown menu.
+
+## Props
+
+The `ActionDropdown` component accepts the following props:
+
+| Name      | Type                                          | Default   | Description                                                                                   |
+|-----------|-----------------------------------------------|-----------|-----------------------------------------------------------------------------------------------|
+| button    | `string`, `ReactElement`, or `ReactElement[]` |           | The content of the button that triggers the dropdown.                                         |
+| children  | `string`, `ReactElement`, or `ReactElement[]` |           | The content of the dropdown menu.                                                            |
+| show      | `boolean`                                    |           | If `true`, the dropdown menu is shown; otherwise, it is hidden.                               |
+| onClose   | `() => void`                                 |           | A callback function called when the dropdown menu is closed.                                   |
+
+## ActionDropdownItem
+
+The `ActionDropdownItem` component represents an item within an `ActionDropdown`. It is used to define individual actions or options within the dropdown menu.
+
+### Props
+
+The `ActionDropdownItem` component accepts the following props:
+
+| Name            | Type                                          | Default   | Description                                                                                             |
+|-----------------|-----------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------|
+| children        | `string`, `ReactElement`, or `ReactElement[]` |           | The content of the item.                                                                               |
+| icon            | `IconProp`                                   |           | An optional icon to display alongside the item.                                                       |
+| suffixIcon      | `IconProp`                                   |           | An optional icon to display after the item.                                                            |
+| prefix          | `string`, `ReactElement`, or `ReactElement[]` |           | An optional element to display before the item.                                                        |
+| suffix          | `string`, `ReactElement`, or `ReactElement[]` |           | An optional element to display after the item.                                                         |
+| onClick         | `() => void`                                 |           | A callback function called when the item is clicked.                                                   |
+| primary         | `boolean`                                    |           | If `true`, the item is styled as a primary action.                                                     |
+| danger          | `boolean`                                    |           | If `true`, the item is styled as a danger action.                                                      |
+| disabled        | `boolean`                                    |           | If `true`, the item is disabled and cannot be interacted with.                                          |
+| closeAfterClick | `boolean`                                    | `true`    | If `true`, the dropdown menu is closed after the item is clicked.                                      |
+
+## Try It
+
+<LiveCode 
+
+    icons={["duck", "search"]}
+
+    page={
+`import { ActionDropdown, ActionDropdownItem, Button, Divider } from '@kloktun/uikit';
+import { useState } from 'react'
+import DuckIcon from './duck-icon.tsx'
+import SearchIcon from './search-icon.tsx'
+
+export default function ActionDropdownExample() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleToggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  return (
+    <div className="flex flex-row">
+        <ActionDropdown show={showDropdown} onClose={() => setShowDropdown(false)} button={<Button onClick={handleToggleDropdown}>Toggle Dropdown</Button>}>
+            <ActionDropdownItem onClick={() => alert('Edit clicked')}>Edit</ActionDropdownItem>
+
+            <ActionDropdownItem primary onClick={() => alert('Save clicked')}>Save</ActionDropdownItem>
+            <ActionDropdownItem danger onClick={() => alert('Delete clicked')}>Delete</ActionDropdownItem>
+            <ActionDropdownItem warning onClick={() => alert('Warning clicked')}>Warning</ActionDropdownItem>
+            <ActionDropdownItem success onClick={() => alert('Success clicked')} >Success</ActionDropdownItem>
+
+            <Divider />
+
+            <ActionDropdownItem icon={<DuckIcon />} >With icon</ActionDropdownItem>
+            <ActionDropdownItem suffixIcon={<SearchIcon />}>With suffix icon</ActionDropdownItem>
+
+            <Divider />
+
+            <ActionDropdownItem  onClick={() => alert('Clicked, but not close dropdown')} closeAfterClick={false} >Click, but not close</ActionDropdownItem>
+            <ActionDropdownItem  disabled >Disabled</ActionDropdownItem>
+
+        </ActionDropdown>
+    </div>
+  );
+}`
+  }
+/>

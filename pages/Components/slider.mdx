@@ -1,0 +1,43 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Slider
+
+The `Slider` component is used to allow users to select a value within a specified range by dragging a thumb along a track. It is commonly used to adjust numerical values like volume or brightness.
+
+## Props
+
+The `Slider` component accepts the following props:
+
+| Name      | Type                | Default   | Description                                                      |
+|-----------|---------------------|-----------|------------------------------------------------------------------|
+| min       | `number`            | `0`       | The minimum value of the slider.                                 |
+| max       | `number`            | `100`     | The maximum value of the slider.                                 |
+| value     | `number`            |           | The current value of the slider.                                 |
+| step      | `number`            | `1`       | The step size by which the slider value changes.                 |
+| onChange  | `(value: number) => void` |       | A callback function called when the slider value changes.        |
+| disabled  | `boolean`           |           | If `true`, the slider is disabled and cannot be interacted with. |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { Slider } from '@kloktun/uikit'
+import { useState } from 'react'
+
+export default function SliderExample() {
+    const [value, setValue] = useState(50);
+
+    const handleChange = (newValue) => {
+        setValue(newValue);
+    };
+
+    return (
+        <div className="flex flex-col gap-4">
+            Value: {value}
+            <Slider min={0} max={100} value={value} onChange={handleChange} />
+        </div>
+    );
+}`
+  }
+/>

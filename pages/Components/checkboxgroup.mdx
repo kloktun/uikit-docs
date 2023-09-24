@@ -1,0 +1,44 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# CheckboxGroup
+
+The CheckboxGroup component is used to group multiple checkboxes together and manage their states collectively.
+
+## Props
+
+| Name                   | Type                        | Default   | Description                                      |
+|------------------------|-----------------------------|-----------|--------------------------------------------------|
+| values                 | `T[]`                       |           | The list of values associated with the checkboxes in the group. |
+| onChange               | `(values: T[]) => void`     |           | The callback function to execute when any checkbox in the group changes. |
+| children               | `JSX.Element` \| `JSX.Element[]` |       | The checkboxes to include in the group. |
+| disabled               | `boolean`                   | `false`   | Determines whether the entire group is disabled. |
+
+## Try It
+
+<LiveCode 
+
+  page={
+`import { useState } from 'react';
+import { CheckboxGroup, Checkbox } from '@kloktun/uikit'
+
+export default function CheckboxGroupExample() {
+
+  const [values, setValues] = useState<string[]>([]);
+
+
+  return (
+    <div className="flex flex-col gap-4">
+      
+      Checked: {values.join(", ")}
+      
+      <CheckboxGroup values={values} onChange={setValues}>
+        <Checkbox value="option1">Option 1</Checkbox>
+        <Checkbox value="option2">Option 2</Checkbox>
+        <Checkbox value="option3">Option 3</Checkbox>
+      </CheckboxGroup>
+      
+    </div>
+  );
+}`
+  }
+/>

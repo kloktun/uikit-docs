@@ -1,0 +1,35 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# EmptyPlaceholder
+
+The EmptyPlaceholder component is used to display a message or icon when a section of content is empty. It can be customized with an icon, text, and optional action.
+
+## Props
+
+| Name      | Type                        | Default   | Description                                            |
+|-----------|-----------------------------|-----------|--------------------------------------------------------|
+| icon      | `string` \| `ReactElement`  |           | The icon to display in the empty placeholder. You can use a string to specify an icon name or a ReactElement to provide a custom icon component. Refer to the [Icon component](#icon) for available icon options. |
+| children  | `string` \| `ReactElement` \| `ReactElement[]` |           | The text or content to display below the icon. |
+| action    | `ReactElement` \| `ReactElement[]` |           | Optional action elements to display below the text. |
+
+## Try It
+
+<LiveCode 
+
+    icons={["search"]}
+
+  page={
+`import { EmptyPlaceholder, Button } from '@kloktun/uikit'
+import SearchIcon from './search-icon.tsx'
+
+export default function EmptyPlaceholderExample() {
+  return (
+    <div className="flex flex-col gap-4">
+      <EmptyPlaceholder icon={<SearchIcon />} action={<Button>Create item</Button>}>
+        No items found
+      </EmptyPlaceholder>
+    </div>
+  );
+}`
+  }
+/>

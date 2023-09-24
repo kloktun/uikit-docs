@@ -1,0 +1,45 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Window
+
+The `Window` component is a versatile component for creating modal windows or pop-up dialogs. It can display custom content within an overlay and provides options for showing and hiding the window.
+
+## Props
+
+The `Window` component accepts the following props:
+
+| Name     | Type                                                | Description                                                           |
+|----------|-----------------------------------------------------|-----------------------------------------------------------------------|
+| children | `React.ReactElement` or `(props: { close: () => void }) => React.ReactElement` | The content to display within the window. This can be a React element or a function |
+| show     | `boolean`                                          | If `true`, the window is displayed; if `false`, it is hidden.          |
+| onClose  | `() => void`                                       | A callback function called when the window is closed.                  |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { useState } from 'react';
+import { Window, Button } from '@kloktun/uikit';
+
+export default function WindowExample() {
+
+  const [showWindow, setShowWindow] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setShowWindow(true)}>Show Window</Button>
+      <Window show={showWindow} onClose={() => setShowWindow(false)}>
+        {({ close }) => (
+          <div className="p-5">
+            <h2>Modal Window</h2>
+            <p>This is a modal window with custom content.</p>
+            <Button onClick={close}>Close</Button>
+          </div>
+        )}
+      </Window>
+    </div>
+  );
+}`
+  }
+/>

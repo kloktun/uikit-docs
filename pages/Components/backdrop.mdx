@@ -1,0 +1,37 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Backdrop
+
+The Backdrop component is used to create a backdrop overlay for modal or pop-up content.
+
+## Props
+
+| Name         | Type                        | Default   | Description                                  |
+|--------------|-----------------------------|-----------|----------------------------------------------|
+| children     | `React.ReactElement`        |           | The content to display within the backdrop.  |
+| onClick      | `() => void`                |           | The callback function to execute on click.    |
+
+## Try It
+
+<LiveCode 
+
+  page={
+`import { Backdrop } from '@kloktun/uikit'
+
+export default function BackdropExample() {
+  const handleBackdropClick = () => {
+    // Handle backdrop click
+    console.log('Backdrop clicked');
+  };
+
+  return (
+    <Backdrop onClick={handleBackdropClick}>
+      <div className="modal-content">
+        {/* Modal content goes here */}
+      </div>
+    </Backdrop>
+  );
+}
+`
+  }
+/>

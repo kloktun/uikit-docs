@@ -1,0 +1,70 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Select
+
+The `Select` component is used to create a dropdown select input. It provides a list of options that the user can choose from.
+
+## Props
+
+The `Select` component accepts the following props:
+
+| Name        | Type                                | Default   | Description                                                                                                    |
+|-------------|-------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------|
+| value       | `any`                               |           | The currently selected value.                                                                                  |
+| type        | `"default"`, `"primary"`, `"plain"`, `"borderless"`, `"text"` | `"default"` | The type of the select input. |
+| children    | `React.ReactElement` or `React.ReactElement[]` |       | The list of `SelectOption` components that define the options for the select input.                        |
+| placeholder | `string`                            |           | The placeholder text to display when no option is selected.                                                    |
+| icon         | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`                       |                | The icon to display                                                    |
+| size         | `"large"` \| `"medium"` \| `"default"` \| `"small"` \| `"mini"`                               | `"default"`    | The size of the select.                                                               |
+| disabled    | `boolean`                           | `false`   | If `true`, the select input is disabled and cannot be interacted with.                                       |
+| onChange    | `(value?: any) => void`             |           | A callback function called when the selected value changes.                                                     |
+
+## SelectOption
+
+The `SelectOption` component represents an option within a `Select` component. It defines the individual options that the user can choose from.
+
+### Props
+
+The `SelectOption` component accepts the following props:
+
+| Name     | Type                                | Default   | Description                                                                                                    |
+|----------|-------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------|
+| value    | `any`                               |           | The value of the option.                                                                                      |
+| icon     | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`                       |                | The icon to display                                                    |
+| label    | `string` \| `JSX.Element` \| `React.ReactElement` \| `React.ReactNode` |           | The label or text to display for the option. If not provided, the children of the `SelectOption` component will be used as the label. |
+| children | `string` \| `JSX.Element` \| `React.ReactElement` \| `React.ReactNode` |           | The label or text to display for the option. If not provided, the `label` prop will be used as the label.   |
+| disabled | `boolean`                           | `false`   | If `true`, the option is disabled and cannot be selected.                                                      |
+
+## Try It
+
+<LiveCode 
+
+    icons={["duck", "search"]}
+
+    page={
+`import { Select, SelectOption, Divider } from '@kloktun/uikit';
+import { useState } from 'react'
+import DuckIcon from './duck-icon.tsx'
+import SearchIcon from './search-icon.tsx'
+
+export default function SelectExample() {
+
+    const [selectedValue, setSelectedValue] = useState('option1');
+
+    const handleChange = (event: React.ChangeEvent<any>) => {
+        setSelectedValue(event.target.value);
+    };
+
+  return (
+        <Select value={selectedValue} onChange={handleChange} placeholder="Select an option">
+            <SelectOption value="option1" icon={<DuckIcon />}>Option 1</SelectOption>
+            <SelectOption value="option2">Option 2</SelectOption>
+            <SelectOption value="option3" disabled>Option 3</SelectOption>
+            <Divider />
+            <SelectOption value="option4" icon={<SearchIcon />}>Option 4</SelectOption>
+            <SelectOption value="option5">Option 5</SelectOption>
+        </Select>
+  );
+}`
+  }
+/>

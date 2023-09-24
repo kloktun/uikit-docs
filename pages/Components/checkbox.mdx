@@ -1,0 +1,40 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Checkbox
+
+The Checkbox component is used to create interactive checkboxes that can be used individually or within a `CheckboxGroup`.
+
+## Props
+
+| Name                   | Type                        | Default   | Description                                      |
+|------------------------|-----------------------------|-----------|--------------------------------------------------|
+| children               | `string` \| `React.ReactElement` \| `(checked?: boolean) => React.ReactElement` |           | The label or content of the checkbox.            |
+| checked                | `boolean`                   |           | Determines whether the checkbox is checked.      |
+| onChange               | `(checked: boolean) => void` |           | The callback function to execute on change.      |
+| disabled               | `boolean`                   | `false`   | Determines whether the checkbox is disabled.     |
+| value                  | `T`                         |           | The value associated with the checkbox.          |
+
+## Try It
+
+<LiveCode 
+
+  page={
+`import { useState } from 'react';
+import { Checkbox } from '@kloktun/uikit'
+
+export default function CheckboxExample() {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-4">
+
+      Checked: {checked ? "true" : "false"}
+      
+      <Checkbox checked={checked} onChange={setChecked}>
+        Label for Checkbox
+      </Checkbox>
+    </div>
+  );
+}`
+  }
+/>

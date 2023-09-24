@@ -1,0 +1,46 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Overlay
+
+The `Overlay` component is used to create overlay content that can be displayed over other content on a webpage, such as modals, dialogs, or popovers.
+
+## Props
+
+| Name            | Type                | Default | Description                                                                                                                                                                                                                           |
+|-----------------|---------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| children        | `React.ReactElement` or `(props: OverlayChildrenProps) => React.ReactElement` | | The content to be displayed within the overlay. This can be a React element or a function that receives `OverlayChildrenProps`. |
+| visible         | `boolean`           | `false` | Controls whether the overlay is visible or hidden. When `true`, the overlay is displayed, and when `false`, it is hidden.                                                                                                          |
+| onVisibleChange | `(visible: boolean) => void` | | A callback function that is called when the visibility of the overlay changes. It receives a boolean value indicating whether the overlay is now visible or hidden. |
+
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { Overlay, Button } from '@kloktun/uikit';
+import { useState } from 'react'
+
+export default function OverlayExample() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleToggle = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <div>
+      <Button onClick={handleToggle}>Toggle Overlay</Button>
+      <Overlay visible={isVisible} onVisibleChange={setIsVisible}>
+        {({ close }) => (
+          <div className="my-custom-overlay">
+            <h2>Overlay Content</h2>
+            <Button onClick={close}>Close Overlay</Button>
+          </div>
+        )}
+      </Overlay>
+    </div>
+  );
+}`
+  }
+/>

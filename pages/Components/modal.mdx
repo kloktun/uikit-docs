@@ -1,0 +1,45 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Modal
+
+The `Modal` component is a versatile component for creating modal dialogs or pop-up windows. It can display custom content within a modal and provides options for showing and hiding the modal.
+
+## Props
+
+The `Modal` component accepts the following props:
+
+| Name       | Type                                                                  | Description                                                                                         |
+|------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| children   | `string`, `React.ReactElement`, or `(props: { close: () => void }) => React.ReactElement` | The content to display within the modal. This can be a string, a React element, or a function. |
+| title      | `string` or `React.ReactElement`                                      | The title to display in the modal header.                                                           |
+| show       | `boolean`                                                             | If `true`, the modal is displayed; if `false`, it is hidden.                                          |
+| onClose    | `() => void`                                                          | A callback function called when the modal is closed.                                                  |
+| scrollType | `"paper"` or `"body"`                                                 | The scroll behavior of the modal. Use `"paper"` for scrollable content within the modal, and `"body"` for a full-height scrollable modal.                  |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { useState } from 'react';
+import { Modal, Button } from '@kloktun/uikit';
+
+export default function ModalExample() {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      <Modal show={showModal} onClose={() => setShowModal(false)} title="Modal Title">
+        {({ close }) => (
+          <div className="flex flex-col gap-4">
+            <p>This is a modal dialog with custom content.</p>
+            <Button onClick={close}>Close</Button>
+          </div>
+        )}
+      </Modal>
+    </div>
+  );
+}`
+  }
+/>

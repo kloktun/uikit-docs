@@ -1,36 +1,35 @@
+import LiveCode from '@/components/live-code/live-code';
+
 # Label
 
-The Label component is used to associate a label with a form input or element.
+The `Label` component is used to create labels for form elements. It provides a way to associate a label with its corresponding input element.
 
 ## Props
 
-| Name         | Type                                                  | Default        | Description                                                                           |
-|--------------|-------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
-| label        | `string` \| `React.ReactElement`                       |                | The text or element to display as the label.                                          |
-| children     | `React.ReactElement`                                  |                | The content to be associated with the label.                                          |
+| Name       | Type                        | Default   | Description                                            |
+|------------|-----------------------------|-----------|--------------------------------------------------------|
+| label      | `string` \| `ReactElement`  |           | The label to be displayed for the form element. You can use a string or a React element for the label. |
+| children   | `ReactElement`              |           | The form element for which the label is associated.    |
+| ...restProps | Various HTML label attributes and event handlers. | | Additional attributes and event handlers passed down to the underlying label element. |
 
-## Usage
+## Try It
 
-```tsx
-import React from 'react';
-import { Label } from '@kloktun/uikit';
+<LiveCode 
 
-const Example = () => {
+    page={
+`import { Label, Input } from '@kloktun/uikit'
 
-  const [value, setValue] = useState("");
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
-
+export default function LabelExample() {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <Label label="Username">
-        <Input value={value} onChange={handleChange} />
+        <Input placeholder="Enter your username" />
       </Label>
-      <Label label={<i>Age</i>}>
-        <Input value={value} onChange={handleChange} />
+      <Label label={<span style={{ color: 'red' }}>Password</span>}>
+        <Input type="password" placeholder="Enter your password" />
       </Label>
     </div>
   );
-};
-
-export default Example;
-```
+}`
+  }
+/>

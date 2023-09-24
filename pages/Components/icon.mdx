@@ -1,0 +1,37 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Icon
+
+The Icon component is used to display icons with optional color and size customization.
+
+## Props
+
+| Name      | Type                                          | Default   | Description                                            |
+|-----------|-----------------------------------------------|-----------|--------------------------------------------------------|
+| icon      | `string` \| `ReactElement`                    |           | The icon to display. You can use a string to specify an icon name or a ReactElement to provide a custom icon component. |
+| size      | `"mini"` \| `"small"` \| `"medium"` \| `"large"` \| `"default"` \| `"huge"`   | `"default"` | The size of the icon. |
+| color     | `string`                                      |           | The color of the icon. |
+
+## Try It
+
+<LiveCode 
+
+    icons={["duck", "search"]}
+
+  page={
+`import { Icon } from '@kloktun/uikit'
+import DuckIcon from './duck-icon.tsx'
+import SearchIcon from './search-icon.tsx'
+
+export default function IconExample() {
+  return (
+    <div className="flex flex-row gap-4">
+      <Icon icon={<DuckIcon />} />
+      <Icon icon={<SearchIcon />} />
+      <Icon icon={<DuckIcon />} color="green" size="huge" />
+      <Icon icon={<SearchIcon />} color="#aa0000" size="mini" />
+    </div>
+  );
+}`
+  }
+/>

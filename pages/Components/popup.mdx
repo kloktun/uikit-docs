@@ -1,0 +1,172 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Popup
+
+The `Popup` component is a versatile component for creating pop-up dialogs with customizable content and buttons. It is often used to display alerts, confirmations, or other interactive dialogs.
+
+## Props
+
+The `Popup` component accepts the following props:
+
+| Name              | Type                                               | Default | Description                                                                                                                                                                            |
+|-------------------|----------------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title             | `string` or `React.ReactElement`                   |         | The title to display in the popup dialog.                                                                                                                                             |
+| titleAlign        | `"start"`, `"center"`, or `"end"`                  | `"center"` | The alignment of the title text within the popup dialog. Defaults to `"center"`.                                                                                                     |
+| children          | `string`, `React.ReactElement`, or `(props: { close: () => void }) => React.ReactElement` |         | The content to display within the popup. This can be a string, a React element, or a function.                             |
+| buttons           | `ButtonProps[]` or `(close: (result?: T) => void) => ButtonProps[]`                | `[]`    | The buttons to display in the popup. You can provide an array of `ButtonProps` or a function that receives a `close` function as an argument and returns an array of `ButtonProps`. |
+| buttonsDirection  | `"vertical"` or `"horizontal"`                     | `"horizontal"` | The direction in which the buttons should be laid out. Defaults to `"horizontal"` unless there is only one button or more than two buttons, in which case it becomes `"vertical"`.    |
+| onClose           | `(result?: T) => void`                                     | `(result) => {}` | A callback function called when the popup is closed. It can receive a result if a button is clicked.                                                                                 |
+| danger            | `boolean`                                          | `false` | If `true`, the popup is styled as a danger message.                                                                                                                                   |
+| info              | `boolean`                                          | `false` | If `true`, the popup is styled as an info message.                                                                                                                                     |
+| success           | `boolean`                                          | `false` | If `true`, the popup is styled as a success message.                                                                                                                                  |
+| error             | `boolean`                                          | `false` | If `true`, the popup is styled as an error message.                                                                                                                                    |
+| warning           | `boolean`                                          | `false` | If `true`, the popup is styled as a warning message.                                                                                                                                  |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { useState } from 'react';
+import { usePopup, useMessagePopup, useConfirmPopup, Button, Divider } from '@kloktun/uikit';
+
+export default function PopupExample() {
+
+  // Default popup
+  const showPopup = usePopup();
+
+  // Message popup
+  const showMessagePopup = useMessagePopup();
+
+  // Confirm popup
+  const showConfirmPopup = useConfirmPopup();
+
+
+  const handleShowPopup = async () => {
+
+    const result = await showPopup({
+      title:"Title",
+      children: "Message",
+      buttons: (close) => [
+        { children: 'Confirm', type: "primary", onClick: () => close('confirmed') },
+        { children: 'Cancel', onClick: () => close('cancelled') },
+      ]
+    });
+
+    if(!result){
+      return;
+    }
+
+    alert(result);
+
+  }
+
+  const handleShowMessagePopup = async () => {
+
+    await showMessagePopup({
+      title: "Message Title",
+      children: "Message Text",
+      success: true,
+      okayButtonText: "Okay",
+      cancelButtonText: "Just cancel"
+    });
+
+  }
+
+  const handleShowConfirmPopup = async () => {
+
+    const result = await showConfirmPopup({
+      title: "Title",
+      children: "Message",
+      danger: true,
+      confirmButtonText: "Confirm",
+      cancelButtonText: "Cancel"
+    });
+
+    if(!result){
+      return;
+    }
+
+    alert("Confirmed!");
+
+  }
+
+  const handleShowInfoMessage = async () => {
+
+    await showMessagePopup({
+      title: "Info",
+      children: "Message",
+      info: true,
+      okayButtonText: "Okay",
+      cancelButtonText: "Cancel"
+    });
+
+  }
+
+  const handleShowSuccessMessage = async () => {
+
+    await showMessagePopup({
+      title: "Success",
+      children: "Message",
+      success: true,
+      okayButtonText: "Okay",
+      cancelButtonText: "Cancel"
+    });
+
+  }
+
+  const handleShowWarningMessage = async () => {
+
+    await showMessagePopup({
+      title: "Warning",
+      children: "congratulations",
+      warning: true,
+      okayButtonText: "Nice",
+      cancelButtonText: "Just cancel"
+    });
+
+  }
+
+  
+
+  const handleShowDangerMessage = async () => {
+
+    await showMessagePopup({
+      title: "Danger",
+      children: "Message",
+      danger: true,
+      okayButtonText: "Okay",
+      cancelButtonText: "Cancel"
+    });
+
+  }
+
+  const handleShowErrorMessage = async () => {
+
+    await showMessagePopup({
+      title: "Error",
+      children: "Message",
+      error: true,
+      okayButtonText: "Okay",
+      cancelButtonText: "Cancel"
+    });
+
+  }
+
+
+  return (
+    <div className="flex flex-col gap-4">
+      <Button onClick={handleShowPopup}>Show Popup</Button>
+      <Button onClick={handleShowMessagePopup}>Show Message</Button>
+      <Button onClick={handleShowConfirmPopup}>Show Confirm</Button>
+      <Divider />
+      <Button onClick={handleShowInfoMessage} info>Show info</Button>
+      <Button onClick={handleShowSuccessMessage} success>Show success</Button>
+      <Button onClick={handleShowWarningMessage} warning>Show warning</Button>
+      <Button onClick={handleShowDangerMessage} error>Show danger</Button>
+      <Button onClick={handleShowErrorMessage} error>Show error</Button>
+    </div>
+  );
+}`
+  }
+/>

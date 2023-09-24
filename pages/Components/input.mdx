@@ -1,78 +1,74 @@
+import LiveCode from '@/components/live-code/live-code';
+
 # Input
 
-The Input component is used to render an input element with various styling options and features.
+The `Input` component provides a flexible input field that can be customized with various features and styles. It supports prepend and append elements, icons, debouncing, password visibility toggle, and more.
 
 ## Props
 
-| Name               | Type                                                                                                                                                                  | Default        | Description                                                                                                                                |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| value              | `string`                                                                                                                                                              |                | The value of the input field.                                                                                                              |
-| onChange           | `(value: string) => void`                                                                                                                                              |                | Callback function invoked when the input value changes.                                                                                    |
-| onDebounce         | `(value: string) => void`                                                                                                                                              |                | Callback function invoked with the debounced input value after a specified timeout.                                                        |
-| debounceTimeout    | `number`                                                                                                                                                              | `200`          | The timeout (in milliseconds) for debouncing the input value changes.                                                                       |
-| size               | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"`                                                                                                        | `"default"`    | The size of the input field.                                                                                                               |
-| disabled           | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field is disabled.                                                                                            |
-| success            | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field has a success status.                                                                                   |
-| error              | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field has an error status.                                                                                     |
-| warning            | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field has a warning status.                                                                                   |
-| prepend            | `string` \| `React.ReactElement`                                                                                                                                       |                | The content to be prepended to the input field.                                                                                            |
-| prefix             | `string` \| `React.ReactElement`                                                                                                                                       |                | The content to be displayed before the input field.                                                                                        |
-| prefixIcon         | `string` \| `React.ReactElement`                                                                                                                                       |                | The icon to be displayed before the input field.                                                                                            |
-| prefixText         | `string`                                                                                                                                                              |                | The text to be displayed before the input field.                                                                                            |
-| prefixPlaceholder  | `string`                                                                                                                                                              |                | The placeholder text for the prefix.                                                                                                       |
-| suffixPlaceholder  | `string`                                                                                                                                                              |                | The placeholder text for the suffix.                                                                                                       |
-| suffixText         | `string`                                                                                                                                                              |                | The text to be displayed after the input field.                                                                                             |
-| suffixIcon         | `string` \| `React.ReactElement`                                                                                                                                       |                | The icon to be displayed after the input field.                                                                                             |
-| suffix             | `string` \| `React.ReactElement`                                                                                                                                       |                | The content to be displayed after the input field.                                                                                          |
-| append             | `string` \| `React.ReactElement`                                                                                                                                       |                | The content to be appended to the input field.                                                                                              |
-| clearable          | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field can be cleared by clicking a clear button.                                                               |
-| togglePassword     | `boolean`                                                                                                                                                             | `false`        | Determines whether the input field can toggle the visibility of a password.                                                                |
-| type               | `"text"` \| `"password"` \| `"email"` \| `"number"` \| `"search"` \| `"tel"` \| `"url"` \| `"date"` \| `"datetime-local"` \| `"month"` \| `"time"` \| `"week"`   | `"text"`       | The type of the input field.                                                                                                               |
-| ...restProps       | `React.HTMLProps<HTMLInputElement>`                                                                                                                                   |                | Additional HTML attributes and event handlers for the input element.                                                                       |
+| Name             | Type                                                | Default   | Description                                                      |
+|------------------|-----------------------------------------------------|-----------|------------------------------------------------------------------|
+| value            | `string`                                           |           | The current value of the input. |
+| onDebounce       | `(value: string) => void`                         |           | A callback function that fires after the user has stopped typing for a specified debounce timeout. |
+| debounceTimeout  | `number`                                           | `200`     | The debounce timeout in milliseconds for the `onDebounce` callback. |
+| prepend          | `string` \| `React.ReactElement`                   |           | Content to prepend to the input field. |
+| prefix           | `string` \| `React.ReactElement`                   |           | Content to be displayed before the input text. |
+| prefixIcon       | `string` \| `React.ReactElement`                   |           | An icon to display before the input text. |
+| prefixText       | `string`                                           |           | Text to display before the input text. |
+| prefixPlaceholder| `string`                                           |           | Placeholder text for the prefix. |
+| suffix           | `string` \| `React.ReactElement`                   |           | Content to be displayed after the input text. |
+| suffixIcon       | `string` \| `React.ReactElement`                   |           | An icon to display after the input text. Refer to the |
+| suffixText       | `string`                                           |           | Text to display after the input text. |
+| suffixPlaceholder| `string`                                           |           | Placeholder text for the suffix. |
+| append           | `string` \| `React.ReactElement`                   |           | Content to append to the input field. |
+| clearable        | `boolean`                                          | `false`   | If `true`, a clear button is displayed when there is input text. Clicking it clears the input field. |
+| togglePassword   | `boolean`                                          | `false`   | If `true`, a password visibility toggle button is displayed for password input types. |
+| type             | `"text"` \| `"password"` \| `"number"` \| `"email"` \| `"tel"` | `"text"` | The input type. |
+| size       | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"` | `"default"` | The size of the input. |
+| ...restProps     | Various HTML input attributes and event handlers.   |           | Additional attributes and event handlers passed down to the underlying input element. |
 
-## Usage
+## Try It
 
-```tsx
-import React from 'react';
-import { Input } from '@kloktun/uikit';
-import UserIcon from 'path/to/user-icon';
+<LiveCode 
 
-const Example = () => {
+    icons={["duck", "search"]}
 
-  const [value, setValue] = useState("");
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+    page={
+`import { Input, Button } from '@kloktun/uikit'
+import DuckIcon from './duck-icon.tsx'
+import SearchIcon from './search-icon.tsx'
+
+export default function InputExample() {
+  const handleDebounce = (value) => {
+    console.log("Debounced value:", value);
+  }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
+      
+      <Input placeholder="Enter text" />
+
+      <Input placeholder="Large enter text" size="large" />
+
+      <Input  prefixPlaceholder="https://" append={<Button type="borderless">Save</Button>} />
+
+      <Input suffixText=".com" />
+
       <Input
-        value={value}
-        onChange={handleChange}
-        size="large"
-        placeholder="Enter your name"
-        prefix={<UserIcon />}
-        suffix="@example.com"
-        clearable
+        prefixIcon={<DuckIcon />}
+        suffixIcon={<SearchIcon />}
       />
+      
       <Input
-        value={value}
-        onChange={handleChange}
-        placeholder="Enter your password"
-        prefixIcon="lock"
-        suffix={<Button>Forgot Password</Button>}
+        prefixIcon={<DuckIcon />}
+        suffixIcon={<SearchIcon />}
         togglePassword
         type="password"
+        onDebounce={handleDebounce}
       />
-      <Input
-        value={value}
-        onChange={handleChange}
-        size="small"
-        placeholder="Search"
-        prefixText="Search"
-        suffixIcon={<UserIcon />}
-      />
+      
     </div>
   );
-};
-
-export default Example;
-```
+}`
+  }
+/>

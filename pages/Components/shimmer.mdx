@@ -1,0 +1,35 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Shimmer
+
+The `Shimmer` component is used to create a shimmer or loading effect that mimics a content placeholder. It is often used to indicate that content is loading or as a placeholder for content that is yet to be fetched.
+
+## Props
+
+| Name         | Type     | Default | Description                                     |
+|--------------|----------|---------|-------------------------------------------------|
+| width        | `string` |         | The width of the shimmer element.              |
+| height       | `string` |         | The height of the shimmer element.             |
+| borderRadius | `string` |         | The border radius of the shimmer element.      |
+| className    | `string` |         | Additional CSS classes to apply to the shimmer element. |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { Shimmer } from '@kloktun/uikit'
+
+export default function ShimmerExample() {
+    return (
+        <div className="flex flex-row gap-4">
+
+            <Shimmer width="100px" height="100px" />
+
+            <Shimmer width="50%" height="16px" borderRadius="4px" className="mb-2" />
+            
+        </div>
+    );
+}`
+  }
+/>

@@ -1,0 +1,60 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# RadioGroup and RadioOption
+
+The `RadioGroup` component is used to create a group of radio buttons where only one option can be selected at a time. The `RadioOption` component represents an individual radio button within the group.
+
+## RadioGroup
+
+The `RadioGroup` component manages the state of the radio button group. It takes the following props:
+
+| Name      | Type                       | Default   | Description                                              |
+|-----------|----------------------------|-----------|----------------------------------------------------------|
+| value     | `T`                        |           | The currently selected value of the radio group.        |
+| onChange  | `(value: T) => void`       |           | A callback function that is called when the selected value changes. |
+| children  | `JSX.Element` \| `JSX.Element[]` |       | The individual `RadioOption` components that make up the radio group. |
+| disabled  | `boolean`                   |           | If `true`, the entire radio group is disabled.         |
+
+## RadioOption
+
+The `RadioOption` component represents an individual radio button within the radio group. It takes the following props:
+
+| Name      | Type                       | Default   | Description                                              |
+|-----------|----------------------------|-----------|----------------------------------------------------------|
+| value     | `T`                        |           | The value associated with this radio option.             |
+| children  | `string` \| `React.ReactElement` \| `(selected: boolean) => React.ReactElement` | | The label of the radio option. You can use a string, a JSX element, or a function that returns a JSX element. |
+| disabled  | `boolean`                   |           | If `true`, the radio option is disabled and cannot be selected. |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { RadioGroup, RadioOption } from '@kloktun/uikit'
+import { useState } from 'react'
+
+export default function RadioExample() {
+
+    const [selectedValue, setSelectedValue] = useState("option1");
+
+    const handleChange = (value) => {
+        setSelectedValue(value);
+    };
+
+    return (
+
+      <div className="flex flex-col gap-4">
+
+        Value: {selectedValue}
+
+        <RadioGroup value={selectedValue} onChange={handleChange}>
+          <RadioOption value="option1">Option 1</RadioOption>
+          <RadioOption value="option2">Option 2</RadioOption>
+          <RadioOption value="option3" disabled>Option 3</RadioOption>
+          <RadioOption value="option4">Option 4</RadioOption>
+        </RadioGroup>
+      </div>
+    );
+}`
+  }
+/>

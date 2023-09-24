@@ -1,0 +1,36 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Dropdown
+
+The Dropdown component creates a customizable dropdown menu that appears when a button is clicked. It can be used to display additional options or content.
+
+## Props
+
+| Name            | Type                                       | Default   | Description                                                            |
+|-----------------|--------------------------------------------|-----------|------------------------------------------------------------------------|
+| button          | `JSX.Element` \| `React.ReactNode` \| `React.ReactElement` |           | The button element or content that triggers the dropdown. |
+| children        | `JSX.Element` \| `React.ReactNode` \| `React.ReactElement` |           | The content to be displayed inside the dropdown when it's open. |
+| show            | `boolean`                                  |           | Controls whether the dropdown is open or closed. |
+| onClickOutside  | `() => void`                               |           | A callback function triggered when a click occurs outside the dropdown, only when the dropdown is open. |
+
+## Try It
+
+<LiveCode 
+
+  page={
+`import { Dropdown, Button } from '@kloktun/uikit'
+import { useState } from 'react';
+
+export default function DropdownExample() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  return (
+    <div className="flex flex-row">
+      <Dropdown button={<Button onClick={() => setShowDropdown(!showDropdown)}>Toggle Dropdown</Button>} show={showDropdown} onClickOutside={() => setShowDropdown(false)}>
+        Some content inside
+      </Dropdown>
+    </div>
+  );
+}`
+  }
+/>

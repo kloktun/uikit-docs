@@ -1,0 +1,43 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Spinner
+
+The `Spinner` component is used to display a loading spinner or indicator. It provides different sizes for the spinner and allows you to customize the icon that represents the loading spinner.
+
+## Props
+
+| Name   | Type                                                | Default   | Description                                       |
+|--------|-----------------------------------------------------|-----------|---------------------------------------------------|
+| size   | `"default"` \| `"small"` \| `"medium"` \| `"large"` \| `"mini"` | `"default"` | The size of the spinner. |
+| icon   | `string` \| `JSX.Element` \| `React.ReactElement` |           | The icon to use for the spinner. If not provided, a default spinner icon is used. |
+
+## Try It
+
+<LiveCode 
+
+    icons={["duck"]}
+
+    page={
+`import { Spinner } from '@kloktun/uikit'
+import DuckIcon from './duck-icon.tsx'
+
+export default function SpinnerExample() {
+  return (
+        <div className="flex flex-row gap-4">
+
+            <Spinner />
+
+            <Spinner size="large" />
+            
+            <div className="text-red-500">
+                <Spinner />
+            </div>
+
+            <Spinner icon={<DuckIcon />}/>
+
+            
+        </div>
+    );
+}`
+  }
+/>

@@ -1,0 +1,56 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Textarea
+
+The `Textarea` component is used to create multi-line text input fields. It provides the ability to auto-adjust the height of the textarea based on its content, making it suitable for various text input scenarios.
+
+## Props
+
+| Name       | Type                                   | Default   | Description                                                      |
+|------------|----------------------------------------|-----------|------------------------------------------------------------------|
+| value      | `string`                               |           | The current value of the textarea.                                |
+| onChange   | `(event: React.ChangeEvent) => void`    |           | A function to handle changes in the textarea's content.           |
+| disabled   | `boolean`                              | `false`   | If `true`, the textarea is disabled and cannot be interacted with. |
+| success    | `boolean`                              | `false`   | If `true`, the textarea is in a success state.                    |
+| warning    | `boolean`                              | `false`   | If `true`, the textarea is in a warning state.                    |
+| error      | `boolean`                              | `false`   | If `true`, the textarea is in an error state.                     |
+| size       | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"` | `"default"` | The size of the textarea. See available sizes below. |
+| autosize   | `boolean` \| `{ minRows?: number, maxRows?: number }` | `{ minRows: 2, maxRows: 5 }` | Controls the auto-sizing behavior of the textarea. If `true`, it will automatically adjust its height based on content. You can also specify `minRows` and `maxRows` for more precise control. |
+| ...restProps | Various HTML attributes and event handlers. | | Additional attributes and event handlers passed down to the underlying `textarea` element. |
+
+## Try It
+
+<LiveCode 
+
+    page={
+`import { Textarea } from '@kloktun/uikit'
+import React, { useState } from 'react';
+
+export default function TextareaExample() {
+
+    const [value, setValue] = useState("");
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setValue(e.target.value);
+    }
+
+    return (
+        <div className="flex flex-col gap-4">
+
+            Text: <pre>{value}</pre>
+
+            <Textarea 
+                value={value}
+                onChange={handleChange}
+                placeholder="Write something..."
+                autosize={
+                    {
+                        minRows: 2,
+                        maxRows: 5
+                    }
+                }
+            />
+        </div>
+    );
+}`
+  }
+/>

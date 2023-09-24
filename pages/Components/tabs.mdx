@@ -1,0 +1,91 @@
+import LiveCode from '@/components/live-code/live-code';
+
+# Tabs
+
+The `Tabs` component is used to create a tabbed interface. It consists of three main components: `Tabs`, `TabsPanel`, and `TabsCurrent`. `Tabs` manages the overall state of the tabs and allows you to switch between them. `TabsPanel` is used to render the tabs themselves, and `TabsCurrent` is used to display the content of the currently selected tab.
+
+## Tabs
+
+The `Tabs` component is used to manage the state of the tabs and switch between them. It takes the following props:
+
+| Name            | Type                              | Default           | Description                                                     |
+|-----------------|-----------------------------------|-------------------|-----------------------------------------------------------------|
+| initalTabIndex  | `number`                          | `0`               | The index of the initially selected tab.                        |
+| onChange        | `(index: number) => void`         |                   | A callback function that is called when the selected tab changes. |
+| tabs            | `TabProps[]`                      |                   | An array of tab objects. Each tab object is defined by its props. |
+| children        | `string` \| `ReactElement` \| `ReactElement[]` |       | The content of the `Tabs` component, typically `TabsPanel` and `TabsCurrent`. |
+
+## TabProps
+
+The `TabProps` type represents the props that can be passed to individual tabs within the `Tabs` component. These props include:
+
+| Name        | Type                                                                        | Default   | Description                                                     |
+|-------------|-----------------------------------------------------------------------------|-----------|-----------------------------------------------------------------|
+| label       | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`     |           | The label of the tab. You can use a string, a JSX element, or a React node. |
+| icon        | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`     |           | An optional icon to display before the label. You can use a string, a JSX element, or a React node. |
+| suffixIcon  | `string` \| `JSX.Element` \| `React.ReactNode` \| `React.ReactElement`     |           | An optional icon to display after the label. You can use a string, a JSX element, or a React node. |
+| prefix      | `ReactElement`                                                             |           | An optional element to display before the tab's content. |
+| suffix      | `ReactElement`                                                             |           | An optional element to display after the tab's content. |
+| active      | `boolean`                                                                 | `false`   | Whether the tab is currently active or not. |
+| disabled    | `boolean`                                                                 | `false`   | If `true`, the tab is disabled and cannot be clicked. |
+| onClick     | `() => void`                                                              |           | A callback function to execute when the tab is clicked. |
+
+
+## TabsPanel
+
+The `TabsPanel` component is used to render the tabs themselves.
+
+## TabsCurrent
+
+The `TabsCurrent` component is used to display the content of the currently selected tab. It doesn't take any props and should be used as a child of the `Tabs` component.
+
+
+## Try It
+
+<LiveCode 
+    
+    icons={["search", "duck"]}
+
+    page={
+`import { Tabs, TabsPanel, TabsCurrent } from '@kloktun/uikit'
+import SearchIcon from './search-icon.tsx'
+import DuckIcon from './duck-icon.tsx'
+
+export default function TabsExample() {
+  return (
+    <Tabs
+        tabs={
+            [
+                {
+                    label: "First tab",
+                    children: <>First section</>,
+                },
+                {
+                    label: "Section 2",
+                    children: <>Section 2 content</>,
+                },
+                {
+                    label: "Section 3",
+                    icon: <SearchIcon />,
+                    children: <>Section 3 content</>,
+                },
+                {
+                    label: "Section 4",
+                    disabled: true,
+                    children: <>Section 4 content</>,
+                },
+                {
+                    label: "Section 5",
+                    suffixIcon: <DuckIcon />,
+                    children: <>Section 5 content</>,
+                },
+            ]
+        }
+    >
+        <TabsPanel />
+        <TabsCurrent />
+    </Tabs>
+  );
+}`
+  }
+/>

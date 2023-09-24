@@ -1,39 +1,45 @@
+import LiveCode from '@/components/live-code/live-code';
+
 # IconButton
 
-The IconButton component is used to render a button element with an icon. It provides various styling options and supports different types.
+The `IconButton` component is used to create buttons with icons. It provides various customization options, including different button types, sizes, and states.
 
 ## Props
 
-| Name         | Type                                                                      | Default        | Description                                                                           |
-|--------------|---------------------------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
-| type         | `"default"` \| `"primary"` \| `"plain"` \| `"borderless"` \| `"text"` \| `"primary-borderless"` \| `"primary-text"` \| `"primary-light-borderless"` \| `"primary-light-text"` \| `"light-borderless"` \| `"light-text"` | `"default"`    | The type of button to render.                                                         |
-| size         | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"`            | `"default"`    | The size of the button.                                                               |
-| loading      | `boolean`                                                                 | `false`        | Determines whether the button is in a loading state.                                  |
-| disabled     | `boolean`                                                                 | `false`        | Determines whether the button is disabled.                                            |
-| error        | `boolean`                                                                 |                | Determines whether the button has an error status.                                    |
-| success      | `boolean`                                                                 |                | Determines whether the button has a success status.                                   |
-| warning      | `boolean`                                                                 |                | Determines whether the button has a warning status.                                   |
-| icon         | `string` \| `React.ReactElement`                                          |                | The icon element to display on the button.                                            |
-| children     | `string` \| `React.ReactElement`                                          |                | An alternate icon element to display on the button.                                   |
-| htmlType     | `"submit"` \| `"button"` \| `"reset"`                                     | `"button"`     | The native html type of button                                                        |
-| ...restProps | `React.HTMLProps<HTMLButtonElement>`                                      |                | Additional HTML attributes and event handlers for the button element.                 |
+| Name       | Type                                                | Default   | Description                                                      |
+|------------|-----------------------------------------------------|-----------|------------------------------------------------------------------|
+| type       | `"default"` \| `"primary"` \| `"plain"` \| `"borderless"` \| `"text"` \| `"primary-borderless"` \| `"primary-text"` \| `"primary-light-borderless"` \| `"primary-light-text"` \| `"light-borderless"` \| `"light-text"` | `"default"` | The type of the button. See available types below. |
+| size       | `"default"` \| `"large"` \| `"medium"` \| `"small"` \| `"mini"` | `"default"` | The size of the button. |
+| loading    | `boolean`                                           | `false`   | If `true`, the button is in a loading state. |
+| disabled   | `boolean`                                           | `false`   | If `true`, the button is disabled. |
+| error      | `boolean`                                           | `false`   | If `true`, the button is in an error state. |
+| success    | `boolean`                                           | `false`   | If `true`, the button is in a success state. |
+| warning    | `boolean`                                           | `false`   | If `true`, the button is in a warning state. |
+| icon       | `string` \| `ReactElement` \| `React.ReactNode`     |           | The icon to display on the button. Refer to the [Icon component](#icon) for available icon options. |
+| children   | `string` \| `ReactElement` \| `React.ReactElement[]` |           | The content to display on the button. |
+| htmlType   | `"button"` \| `"submit"` \| `"reset"`               | `"button"` | The type attribute for the button. |
 
-## Usage
+## Try It
 
-```tsx
-import React from 'react';
-import { IconButton } from '@kloktun/uikit';
-import AddIcon from 'path/to/add-icon';
+<LiveCode 
 
-const Example = () => {
+    icons={["search", "duck"]}
+
+    page={
+`import { IconButton } from '@kloktun/uikit'
+import SearchIcon from './search-icon.tsx'
+import DuckIcon from './duck-icon.tsx'
+
+export default function IconButtonExample() {
   return (
-    <div>
-      <IconButton type="primary" size="large" icon={<AddIcon />} />
-      <IconButton type="plain" icon={<AddIcon />} />
-      <IconButton type="borderless" success icon={<AddIcon />} />
+    <div className="flex flex-row gap-4">
+      <IconButton><SearchIcon/></IconButton>
+      <IconButton type="primary" size="large"><SearchIcon/></IconButton>
+      <IconButton type="plain" icon={<DuckIcon/>} />
+      <IconButton type="plain" icon={<DuckIcon/>} loading />
+      <IconButton type="borderless" size="small" icon={<DuckIcon/>} disabled />
     </div>
   );
-};
-
-export default Example;
-```
+}`
+  }
+/>

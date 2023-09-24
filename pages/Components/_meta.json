@@ -1,8 +1,41 @@
 {
     "alert": "Alert",
+
     "button": "Button",
-    "input": "Input",
     "iconbutton": "IconButton",
+    "input": "Input",
+    "textarea": "Textarea",
+
+    "checkbox": "Checkbox",
+    "checkboxgroup": "CheckboxGroup",
+    "radiogroup": "RadioGroup",
+
+    "select": "Select",
+    "dropdown": "Dropdown",
+    "actiondropdown": "ActionDropdown",
+
+    "slider": "Slider",
+
     "label": "Label",
-    "helper": "Helper"
+    "helper": "Helper",
+
+    "spinner": "Spinner",
+
+
+    "emptyplaceholder": "EmptyPlaceholder",
+    
+    "divider": "Divider",
+    "shimmer": "Shimmer",
+
+    "tab": "Tab",
+    "tabs": "Tabs",
+    
+    "popup": "Popup",
+    "modal": "Modal",
+    "window": "Window",
+    "backdrop": "Backdrop",
+    "overlay": "Overlay",
+    "icon": "Icon"
+
 }
+

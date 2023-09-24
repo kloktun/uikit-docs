@@ -1,41 +1,39 @@
+import LiveCode from '@/components/live-code/live-code';
+
 # Helper
 
-The Helper component is used in forms to provide additional information or error messages.
+The `Helper` component is used to provide additional information or assistance related to a form element. It can display text, error messages, or suffix content to help users understand or interact with the form element.
 
 ## Props
 
-| Name         | Type                                                  | Default        | Description                                                                           |
-|--------------|-------------------------------------------------------|----------------|---------------------------------------------------------------------------------------|
-| children     | `React.ReactElement`                                  |                | The content to be wrapped by the Helper component.                                    |
-| text         | `string` \| `React.ReactElement`                       |                | The text or element to display as helper information.                                 |
-| error        | `string` \| `React.ReactElement`                       |                | The text or element to display as an error message.                                   |
-| suffix       | `string` \| `React.ReactElement`                       |                | The suffix element to display alongside the helper information or error message.      |
+| Name       | Type                        | Default   | Description                                            |
+|------------|-----------------------------|-----------|--------------------------------------------------------|
+| children   | `ReactElement`              |           | The form element for which the helper content is provided. |
+| text       | `string` \| `ReactElement`  |           | Additional text or content to display alongside the form element. It can be used to provide guidance or context. |
+| error      | `string` \| `ReactElement`  |           | An error message to display if there is an issue with the form element. It helps users understand and address errors. |
+| suffix     | `string` \| `ReactElement`  |           | Additional content to be appended to the form element. It can be used for adding icons or extra information. |
 
-## Usage
+## Try It
 
-```tsx
-import React from 'react';
-import { Helper, Input } from '@kloktun/uikit';
+<LiveCode 
 
-const Example = () => {
+    page={
+`import { Helper, Input } from '@kloktun/uikit'
 
-  const [value, setValue] = useState("");
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
-  
+export default function HelperExample() {
   return (
-    <div>
-      <Helper text="Helper text">
-        <Input value={value} onChange={handleChange} />
+    <div className="flex flex-col gap-4">
+      <Helper text="Please enter your username">
+        <Input placeholder="Username" />
       </Helper>
-      <Helper text="Helper text" error="Error message">
-        <Input value={value} onChange={handleChange} />
+      <Helper error="Username is required">
+        <Input placeholder="Username" />
       </Helper>
-      <Helper text="Helper text" suffix="Suffix text">
-        <Input value={value} onChange={handleChange} />
+      <Helper text="Enter your email" suffix="0/30">
+        <Input placeholder="Email" />
       </Helper>
     </div>
   );
-};
-
-export default Example;
-```
+}`
+  }
+/>
