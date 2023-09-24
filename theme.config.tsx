@@ -22,6 +22,7 @@ export default {
       link: 'https://github.com/kloktun/uikit'
     },
     
+    darkMode: false,
     primaryHue: {
       dark: 269,
       light: 265
